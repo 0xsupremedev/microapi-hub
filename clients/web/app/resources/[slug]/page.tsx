@@ -67,11 +67,12 @@ export default async function ResourceDetail({ params }: { params: { slug: strin
           </div>
           <div className="flex justify-center">
             <PaymentButton
-              paymentRequirements={item.requirements}
+              requirements={item.requirements}
               resourceUrl={resourceUrl}
-              variant="primary"
               className="px-8 py-3 text-lg"
-            />
+            >
+              Pay & Access
+            </PaymentButton>
           </div>
         </div>
 
