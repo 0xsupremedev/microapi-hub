@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { NavBar } from '../../components/NavBar';
 import { Footer } from '../../components/Footer';
 import { Card } from '../../components/ui/Card';
