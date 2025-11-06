@@ -1,0 +1,21 @@
+[workspace]
+members = ["programs/registry"]
+
+[features]
+seeds = true
+skip-lint = false
+
+[programs.devnet]
+registry = "Reg1stry111111111111111111111111111111111111"
+
+[registry]
+url = "https://api.devnet.solana.com"
+
+[provider]
+cluster = "Devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = ""
+
+

@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  facilitator:
+    build: ../services/facilitator
+    ports:
+      - "8787:8787"
+    environment:
+      - PORT=8787
+      - NETWORK=devnet
+      - RPC_URL=https://api.devnet.solana.com
+      - FEE_PAYER_SECRET=
+      - DISABLE_RATE_LIMIT=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8787/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+  provider:
+    build: ../services/provider-api
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - PAY_TO_PUBKEY=
+      - USDC_MINT=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+      - FACILITATOR_URL=http://facilitator:8787
+    depends_on:
+      - facilitator
+  web:
+    build: ../clients/web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_PROVIDER_DISCOVERY_URL=http://provider:8080/.well-known/x402
+    depends_on:
+      - provider
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+

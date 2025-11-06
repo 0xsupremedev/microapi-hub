@@ -1,0 +1,17 @@
+{
+  "name": "microapi-hub",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "services/*",
+    "clients/*"
+  ],
+  "scripts": {
+    "build": "npm -ws run build",
+    "dev": "npm -ws run dev",
+    "lint": "npm -ws run lint",
+    "e2e": "tsx infra/e2e.ts"
+  }
+}
+
+

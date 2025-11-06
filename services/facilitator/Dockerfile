@@ -1,0 +1,11 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci || npm i
+COPY tsconfig.json ./
+COPY src ./src
+RUN npm run build
+EXPOSE 8787
+CMD ["npm","run","start"]
+
+

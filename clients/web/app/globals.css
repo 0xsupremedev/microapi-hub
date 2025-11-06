@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+body { @apply bg-surface-100 text-neutral-100; }
+
+/* Solana-inspired tokens */
+:root {
+  --brand: 0 255 189;
+  --bg: 11 11 16; /* surface-100 */
+  --fg: 235 238 240;
+  --muted: 160 160 175;
+}
+
+.brand-gradient {
+  background: linear-gradient(90deg, rgba(var(--brand)/0.2), transparent 60%);
+}
+
+/* Component layer */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-md px-4 py-2 font-medium text-neutral-900 bg-brand shadow-glow hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 active:opacity-80 transition;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 rounded-md px-4 py-2 font-medium text-brand border border-brand/40 hover:border-brand/60 hover:bg-brand/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 transition;
+  }
+  .card {
+    @apply rounded-xl bg-surface-200/60 backdrop-blur border border-white/5 shadow-sm;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-brand/15 text-brand border border-brand/30;
+  }
+}
+
+/* Utilities layer */
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur border border-white/10;
+  }
+  .brand-ring {
+    box-shadow: 0 0 0 2px rgba(var(--brand)/0.18);
+  }
+  .gradient-edge {
+    background: linear-gradient(90deg, rgba(var(--brand)/0.18), transparent 30%, transparent 70%, rgba(var(--brand)/0.12));
+  }
+}
+
+/* Light theme overrides */
+html.light body { @apply bg-white text-slate-900; }
+html.light .card { @apply bg-white border-neutral-200 text-slate-900; }
+html.light .glass { @apply bg-black/5 border-black/10; }
+html.light .btn { @apply text-white; }
+html.light .btn-outline { @apply border-slate-300 text-slate-800 hover:bg-slate-100; }
+
+/* Optional snapshot fonts (copy files to public/solana_assets/fonts/...) */
+@font-face {
+  font-family: 'SnapshotSans';
+  src: url('/solana_assets/fonts/YourFont-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SnapshotSans';
+  src: url('/solana_assets/fonts/YourFont-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: bold;
+  font-display: swap;
+}
+body { font-family: 'SnapshotSans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+
+
